@@ -1,9 +1,38 @@
 import styled from "styled-components";
-
-
+import { useProductContext } from "./Context/ProductContex";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const SingleProduct=()=>{
-  return <Wrapper></Wrapper>;
+  const {id} = useParams();
+  console.log("params id : "+id);
+  const {getSingleProduct,isSingleLoading,singleProduct} = useProductContext;
+  useEffect(()=>{
+    getSingleProduct(`/singleproduct/${id}`)
+  }
+    
+    ,[]);
+  //destrunctiong singleProdunct
+  console.log("my single product : "+singleProduct);
+  const {
+    id:axile,
+    title,
+    price,
+    description,
+    category,
+    image,
+    rating,//its an object
+  } = singleProduct;
+
+  const {rate,count}=rating; 
+  if(isSingleLoading){
+    <Wrapper>
+      .....Loading
+    </Wrapper>
+  }
+  return <Wrapper>
+    single product
+  </Wrapper>;
 }
 
 const Wrapper = styled.section`

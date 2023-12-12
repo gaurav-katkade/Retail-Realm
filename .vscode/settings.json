@@ -3,5 +3,8 @@
     "filterproduct"
   ],
   "workbench.colorCustomizations": {},
-  "json.schemas": []
+  "json.schemas": [],
+  "pomodoro.workTime": 40,
+  "pomodoro.repeat": 1,
+  "pomodoro.pauseTime": 10
 }
