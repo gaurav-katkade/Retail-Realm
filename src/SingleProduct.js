@@ -1,39 +1,100 @@
 import styled from "styled-components";
+import MyImages from "./Components/MyImages";
 import { useProductContext } from "./Context/ProductContex";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import FormatPrice from "./Helpers/FormatPrice";
+import { FaTruckFast } from "react-icons/fa6";
+import { TbReplace } from "react-icons/tb";
+import { MdOutlineVerified } from "react-icons/md";
 
+const API = "https://fakestoreapi.com/products";
 const SingleProduct=()=>{
   const {id} = useParams();
   console.log("params id : "+id);
-  const {getSingleProduct,isSingleLoading,singleProduct} = useProductContext;
-  useEffect(()=>{
-    getSingleProduct(`/singleproduct/${id}`)
-  }
-    
-    ,[]);
+  const {getSingleProduct,isSingleLoading,singleProduct} = useProductContext();
+  console.log(getSingleProduct);
   //destrunctiong singleProdunct
   console.log("my single product : "+singleProduct);
   const {
-    id:axile,
+    id:alias,
     title,
     price,
     description,
     category,
     image,
-    rating,//its an object
+    rating:{
+      rate,
+      count
+    }={rate:0,count:0},
   } = singleProduct;
 
-  const {rate,count}=rating; 
-  if(isSingleLoading){
-    <Wrapper>
+ 
+  //  console.log(rate);
+  useEffect(()=>{
+    getSingleProduct(`${API}/${id}`);
+  },[]);
+  //[] to run at only intial render
+  // console.log("my single product 2 : "+singleProduct);
+
+  // console.log(rating);
+  
+  if(isSingleLoading){ 
+    // const {rate,count} = rating; 
+    return<Wrapper>
       .....Loading
-    </Wrapper>
+    </Wrapper>;
   }
   return <Wrapper>
-    single product
+    <div className="container">
+      <div className="grid grid-two-column">
+        <div className="product-images">
+          <MyImages image={image}></MyImages>
+        </div>
+        <div className="product-data">
+          <p>{title}</p>
+          <div>
+            <p>rating: {rate}</p>
+             <p>( {count} Customer Reviews )</p>
+          </div>
+          <p>MRP : <del><FormatPrice price={price+400}/></del></p>
+          <p> Deal of the Day : <FormatPrice price={price}/></p>
+          <p>{description}</p>
+          <div className="product-data-warranty">
+            <div className="product-warranty-data">
+                  <FaTruckFast className="warranty-icon"></FaTruckFast>
+                  <p>
+                    Free devlivery
+                  </p>
+            </div>
+            <div className="product-warranty-data">
+                  <TbReplace className="warranty-icon"></TbReplace>
+                  <p>
+                    30 day replacement
+                  </p>
+            </div>
+            <div className="product-warranty-data"> 
+                  <MdOutlineVerified className="warranty-icon"></MdOutlineVerified>
+                  <p>
+                    Verified
+                  </p>
+            </div>
+            <div className="product-warranty-data"> 
+                  <FaTruckFast className="warranty-icon"></FaTruckFast>
+                  <p>
+                    1 year warranty
+                  </p>
+            </div>
+              
+              
+             
+             
+          </div>
+        </div>
+      </div>
+    </div>
   </Wrapper>;
-}
+};
 
 const Wrapper = styled.section`
   .container {

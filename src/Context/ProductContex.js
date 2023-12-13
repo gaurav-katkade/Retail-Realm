@@ -34,13 +34,13 @@ const AppProvider=({children})=>{
         
     }
     const getSingleProduct= async (url)=>{
-            dispatch({type:'SET_LOADING'})
+            dispatch({type:'SET_SINGLE_LOADING'})
         try {
             const res = await axios.get(url);
-            console.log("single product payload "+res);
-            const data = await res.data;
-            console.log(data);
-            dispatch({type:'SET_SINGLE_DATA',payload:data});
+            // console.log("single product payload "+res);
+            const singleProduct = await res.data;
+            // console.log("single Producnt data : "+singleProduct);
+            dispatch({type:'SET_SINGLE_DATA',payload:singleProduct});
         } catch (error) {
             console.log(error);
             dispatch({type:'SET_SINGLE_ERROR'})

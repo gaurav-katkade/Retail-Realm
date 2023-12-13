@@ -37,18 +37,25 @@ const ProductReducer=(state,action)=>{
                 isSingleLoading:true,
                 isError:false
             }
+            break;
         case 'SET_SINGLE_DATA':
+            console.log("SET_SINGLE_DATA");
+            console.log("action.payload in reducer : "+action.payload);
             return{
                 ...state,
                 singleProduct:action.payload,
+                isSingleLoading:false,
                 isLoading:false,
                 isError:false,
             }
+            break;
         case 'SET_SINGLE_ERROR':
             return{
                 ...state,
+                isSingleLoading:false,
                 isError:true,
             }
+            break;
         default:
             return state;
     }
