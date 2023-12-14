@@ -2,11 +2,16 @@ import styled from "styled-components";
 import MyImages from "./Components/MyImages";
 import { useProductContext } from "./Context/ProductContex";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
 import FormatPrice from "./Helpers/FormatPrice";
 import { FaTruckFast } from "react-icons/fa6";
 import { TbReplace } from "react-icons/tb";
 import { MdOutlineVerified } from "react-icons/md";
+import Stars from "./Components/Stars";
+import ProductColors from "./Components/ProductColors";
+import SelectQuantity from "./Components/SelectQuantity";
+import {Button} from "./styles/Button";
 
 const API = "https://fakestoreapi.com/products";
 const SingleProduct=()=>{
@@ -28,8 +33,9 @@ const SingleProduct=()=>{
       count
     }={rate:0,count:0},
   } = singleProduct;
-
- 
+  //api don't provide stock
+  let stock = 10;
+  const [amount,setAmount]=useState(1);
   //  console.log(rate);
   useEffect(()=>{
     getSingleProduct(`${API}/${id}`);
@@ -38,7 +44,13 @@ const SingleProduct=()=>{
   // console.log("my single product 2 : "+singleProduct);
 
   // console.log(rating);
-  
+  const setIncrease =()=>{
+    amount===stock ? setAmount(stock):setAmount(amount+1);
+  }
+  const setDecrease=()=>{
+    amount===1 ?setAmount(1):setAmount(amount-1);
+  }
+  //
   if(isSingleLoading){ 
     // const {rate,count} = rating; 
     return<Wrapper>
@@ -54,11 +66,11 @@ const SingleProduct=()=>{
         <div className="product-data">
           <p>{title}</p>
           <div>
-            <p>rating: {rate}</p>
+            <p><Stars rate={rate}></Stars></p>
              <p>( {count} Customer Reviews )</p>
           </div>
-          <p>MRP : <del><FormatPrice price={price+400}/></del></p>
-          <p> Deal of the Day : <FormatPrice price={price}/></p>
+          <p className="product-data-price">MRP : <del><FormatPrice price={price+400}/></del></p>
+          <p className="product-data-price product-data-real-price"> Deal of the Day : <FormatPrice price={price}/></p>
           <p>{description}</p>
           <div className="product-data-warranty">
             <div className="product-warranty-data">
@@ -85,11 +97,17 @@ const SingleProduct=()=>{
                     1 year warranty
                   </p>
             </div>
-              
+            
               
              
              
           </div>
+          <hr></hr>
+            <ProductColors/>
+            <SelectQuantity amount={amount} setIncrease={setIncrease} setDecrease={setDecrease}/>
+            <NavLink to="/cart">
+              <Button>ADD TO CART</Button>
+            </NavLink>
         </div>
       </div>
     </div>
@@ -112,7 +130,7 @@ const Wrapper = styled.section`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #ccc;
+      // border-bottom: 1px solid #ccc;
       margin-bottom: 1rem;
 
       .product-warranty-data {
@@ -151,9 +169,9 @@ const Wrapper = styled.section`
 
     hr {
       max-width: 100%;
-      width: 90%;
-      /* height: 0.2rem; */
-      border: 0.1rem solid #000;
+      width: 100%;
+       height: 0.2rem; 
+     /* border: 0.1rem solid #000;*/
       color: red;
     }
   }
