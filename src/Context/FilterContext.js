@@ -12,9 +12,10 @@ const  initial_state = {
 
 export const FilterContextProvider = ({children}) =>{
     const {products,isLoading,isError} = useProductContext();
+    console.log("filterContextProvider -> products ",products);
     const [state,dispatch] = useReducer(reducer,initial_state);
     
-    console.log("filtercontext  -> product ",products);
+    // console.log("filtercontext  -> product ",products);
 
     const setGridView = ()=>{
         return dispatch({type:"SET_GRID_VIEW"});
@@ -26,6 +27,7 @@ export const FilterContextProvider = ({children}) =>{
                 console.log("filter is Loading");
             }
             else{
+                console.log("getFilterProducts -> else -> dispath ")
                 dispatch({type:"SET_FILTER_PRODUCTS",payload:products});
             }
         }
@@ -35,8 +37,13 @@ export const FilterContextProvider = ({children}) =>{
         
     }
     useEffect(
-        getFilterProducts()
-    ,[isLoading]);
+        ()=>{
+             getFilterProducts();
+            // dispatch({type:"SET_FILTER_PRODUCTS",payload:products});
+
+        }
+        
+    ,[products]);
 
     return(<FilterContext.Provider value={{...state,setGridView}}>
         {children}

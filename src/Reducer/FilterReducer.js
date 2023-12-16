@@ -1,13 +1,13 @@
 
 
 const FilterReducer = (state,action) =>{
+    console.log("filter reducer -> action  ",action);
     switch(action.type){
         case 'SET_FILTER_PRODUCTS':
-            console.log("filter reducer -> ",action);
             return{
                 ...state,
-                filterProducts:action.payload,
-                allProducts:action.payload,
+                filterProducts:[...action.payload],
+                allProducts:[...action.payload],
             };
 
         case 'SET_GRID_VIEW':

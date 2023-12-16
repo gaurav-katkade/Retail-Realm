@@ -1,10 +1,13 @@
 import Products from "./Products";
 import styled from "styled-components";
-const GridView = ({filterProducts,allProducts}) =>{
+const GridView = ({filterProducts}) =>{
+
+    console.log(" GridView.js -> filterProducts ",filterProducts);
+
     return<Wrapper>
         <div className="grid-product-list">
             {
-                allProducts.map(
+                filterProducts.map(
                     (element,index)=>{
                             return<Products {...element}/>;
                     }

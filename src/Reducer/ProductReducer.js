@@ -13,9 +13,10 @@ const ProductReducer=(state,action)=>{
                     console.log(total);
                     total = total+1;
                     return(total<=3);
-                },0
+                }
             )
             // here i  was doing mistake written value of function becomes new accumulater 
+            console.log("ProductReducer -> SET-API-DATA -> action.payload ",action.payload);
             return{
                 ...state,
                 isLoading:false,

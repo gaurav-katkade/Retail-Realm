@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useProductContext } from "../Context/ProductContex";
+// import { useProductContext } from "../Context/ProductContex";
 import GridView from "./GridView";
 import { useFilterContext } from "../Context/FilterContext";
 const ProductList = ()=>{
@@ -10,13 +10,12 @@ const ProductList = ()=>{
     //     </>;
     // }
     const {filterProducts,gridView} = useFilterContext();
-
+    console.log("ProductList -> filterProducts ",filterProducts);
     if(gridView){
+        console.log("productList -> grid View is true ");
         return<Wrapper>
             <GridView filterProducts ={filterProducts} ></GridView>
-        </Wrapper>
-    }else{
-        //
+        </Wrapper>;
     }
     
 

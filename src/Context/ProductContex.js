@@ -21,11 +21,13 @@ const AppProvider=({children})=>{
     const [state,dispatch] = useReducer(reducer,intialState);
 
     const getProduct = async (url)=>{
+        console.log("ProductContext -> getProduct is called");
         dispatch({type:'SET_LOADING'});
         try {
             const res = await axios.get(API);
             console.log(res);
             const products = await res.data; 
+            console.log("ProuctContext -> getProducts -> products ",products);
             dispatch({type:'SET_API_DATA',payload:products})
         } catch (error) {
             console.log(error);
