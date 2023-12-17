@@ -9,7 +9,7 @@ const Product =({id,title,image,price,category})=>{
                 {/* <figcaption>{category}</figcaption> */}
             </figure>
             <div className="card-flex">
-                <h3>{title}</h3>
+                <h3>{title.slice(0,50)}...</h3>
                 <p className="price"><FormatPrice price={price}/></p>
             </div>
         </div>
