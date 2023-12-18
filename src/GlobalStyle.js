@@ -66,7 +66,15 @@ h3 {
   font-weight: 400;
 }
 
-p, button {
+p,button {
+  all:unset;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 1.65rem;
+  line-height: 1.5;
+  font-weight:400;
+}
+
+p{
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.65rem;
   line-height: 1.5;

@@ -7,7 +7,7 @@ const ListView = ({filterProducts}) =>{
         <div className="card grid grid-two-column">
         {filterProducts.map(
             (curEle)=>{
-                console.log("ListView -> filterProduct.map -> curelm ",curEle);
+                // console.log("ListView -> filterProduct.map -> curelm ",curEle);
                 const {title,image,description,price,id} = curEle;
             return(
             <>

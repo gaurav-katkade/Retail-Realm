@@ -2,7 +2,7 @@ import Products from "./Products";
 import styled from "styled-components";
 const GridView = ({filterProducts}) =>{
 
-    console.log(" GridView.js -> filterProducts ",filterProducts);
+    // console.log(" GridView.js -> filterProducts ",filterProducts);
 
     return<Wrapper>
         <div className="grid-product-list">

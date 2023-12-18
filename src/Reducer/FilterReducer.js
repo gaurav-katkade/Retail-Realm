@@ -1,7 +1,7 @@
 
 
 const FilterReducer = (state,action) =>{
-    console.log("filter reducer -> action  ",action);
+    // console.log("filter reducer -> action  ",action);
     switch(action.type){
         case 'SET_FILTER_PRODUCTS':
             return{
@@ -21,17 +21,17 @@ const FilterReducer = (state,action) =>{
                 gridView:false,
             }
         case 'SET_SORT_VALUE':
-            let sort_val = document.getElementById('sort');
-            let userSelectedSort = sort_val.options[sort_val.selectedIndex].value;
-             console.log("filterReducer -> set sort value -> userSelctedSosrt",userSelectedSort);
+            // let sort_val = document.getElementById('sort');
+            // let userSelectedSort = sort_val.options[sort_val.selectedIndex].value;
+            //  console.log("filterReducer -> set sort value -> userSelctedSosrt",userSelectedSort);
             return{
                 ...state,
-                sortingValue:userSelectedSort,
+                sortingValue:action.value,
             }
         case 'SORT_FILTER_PRODUCTS':
             const {filterProducts,sortingValue} = state;
             const sortedFilterProducts = [...filterProducts];
-            console.log("SORT_FILTER ->SortValue ",sortingValue);
+            // console.log("SORT_FILTER ->SortValue ",sortingValue);
             switch(sortingValue){
                 case 'lowest':
                     sortedFilterProducts.sort(
@@ -64,12 +64,45 @@ const FilterReducer = (state,action) =>{
                 default:
                     console.log(" unexpected value of sorting value ");
             }
-            console.log("sorted filter products ",sortedFilterProducts);
+            // console.log("sorted filter products ",sortedFilterProducts);
             return{
                 ...state,
                 filterProducts:sortedFilterProducts,
             }
-
+        case 'SET_FILTER_VALUE':
+            const {name,value} = action.payload;
+            console.log("filterReducer->SET_FILTER-VALUE ->   name ",name," value ",value);
+            return{
+                ...state,
+                filters:{
+                    ...state.filters,
+                    [name]:value,
+                }
+                
+            } 
+        case 'FILTER_PRODUCTS':
+            const {allProducts,filters}  = state;
+            let {text,category} = state.filters;
+            let tempProducts = [...allProducts];
+                if(text){
+                //wherver the text change
+                tempProducts = tempProducts.filter(
+                    (curEle)=>{
+                        return curEle.title.toLowerCase().includes(text);
+                    }
+                )
+                }
+                if(category!=="All"){
+                    tempProducts = tempProducts.filter(
+                        (curEle)=>{
+                            return curEle.category===category;
+                        }
+                    )
+                }
+                return{
+                    ...state,
+                    filterProducts:tempProducts,
+                }
         default:
             return state;
     };
