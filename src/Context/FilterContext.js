@@ -8,11 +8,14 @@ const  initial_state = {
     filterProducts:[],
     allProducts:[],
     gridView:true,
-    sortingValue:"lowest",
+    sortingValue:"a-z",
     filters:{
         text:"",
-        category:"electronics",
-    }
+        category:"All",
+        range:1000,
+        maxPrice:0,
+        minPrice:0,
+    },
 }
 
 export const FilterContextProvider = ({children}) =>{
@@ -51,6 +54,7 @@ export const FilterContextProvider = ({children}) =>{
             else{
                 // console.log("getFilterProducts -> else -> dispath ")
                 dispatch({type:"SET_FILTER_PRODUCTS",payload:products});
+                dispatch({type:"SORT_FILTER_PRODUCTS"});
             }
         }
         catch(error){
@@ -74,17 +78,18 @@ export const FilterContextProvider = ({children}) =>{
     useEffect(
         ()=>{
              getFilterProducts();
-            // dispatch({type:"SET_FILTER_PRODUCTS",payload:products});
+            // dispatch({type:"SET_SORT_VALUE",value:state.sortingValue});
 
         }
         
     ,[products]);
 
     useEffect(()=>{
-        dispatch({type:"SORT_FILTER_PRODUCTS"})
         dispatch({type:"FILTER_PRODUCTS"})
+        dispatch({type:"SORT_FILTER_PRODUCTS"})
         
-    },[state.sortingValue,state.filters])
+        
+    },[state.sortingValue,state.filters,state.allProducts])
 
     return(<FilterContext.Provider value={{...state,setGridView,setListView,updateSortingValue,updateFilterValue,uniqueCategory}}>
         {children}

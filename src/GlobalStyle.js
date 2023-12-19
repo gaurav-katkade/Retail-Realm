@@ -66,7 +66,7 @@ h3 {
   font-weight: 400;
 }
 
-p,button {
+button {
   all:unset;
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.65rem;

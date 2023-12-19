@@ -1,13 +1,26 @@
+import FormatPrice from "../Helpers/FormatPrice";
 
 
 const FilterReducer = (state,action) =>{
     // console.log("filter reducer -> action  ",action);
     switch(action.type){
         case 'SET_FILTER_PRODUCTS':
+            let PriceArray = action.payload.map(
+                (curEle)=>{
+                    return curEle.price;
+                }
+            )
+            let maxPrice = Math.max(...PriceArray);
+            // maxPrice = <FormatPrice price={maxPrice}></FormatPrice>;
             return{
                 ...state,
                 filterProducts:[...action.payload],
                 allProducts:[...action.payload],
+                filters:{
+                    ...state.filters,
+                    maxPrice:maxPrice,
+                    range:maxPrice,
+                }
             };
 
         case 'SET_GRID_VIEW':
@@ -82,7 +95,7 @@ const FilterReducer = (state,action) =>{
             } 
         case 'FILTER_PRODUCTS':
             const {allProducts,filters}  = state;
-            let {text,category} = state.filters;
+            let {text,category,range} = state.filters;
             let tempProducts = [...allProducts];
                 if(text){
                 //wherver the text change
@@ -99,9 +112,26 @@ const FilterReducer = (state,action) =>{
                         }
                     )
                 }
+                if(range){
+                    tempProducts = tempProducts.filter(
+                        (curEle)=>{
+                            return range >= curEle.price;
+                        }
+                    )
+                }
+                // let maxPrice = tempProducts.reduce(
+                //     (initialVal,curEle)=>{
+                //         return Math.max(initialVal,curEle.price)
+                //     },0
+                // )
                 return{
                     ...state,
                     filterProducts:tempProducts,
+                    // filters:{
+                    //     ...state.filters,
+                    //     maxPrice:maxPrice,
+                            
+                    // }
                 }
         default:
             return state;

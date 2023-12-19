@@ -69,7 +69,7 @@ const SingleProduct=()=>{
             <p><Stars rate={rate}></Stars></p>
              <p>( {count} Customer Reviews )</p>
           </div>
-          <p className="product-data-price">MRP : <del><FormatPrice price={price+400}/></del></p>
+          <p className="product-data-price">MRP : <del><FormatPrice price={price}/></del></p>
           <p className="product-data-price product-data-real-price"> Deal of the Day : <FormatPrice price={price}/></p>
           <p>{description}</p>
           <div className="product-data-warranty">
