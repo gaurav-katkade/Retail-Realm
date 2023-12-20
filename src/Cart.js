@@ -1,7 +1,24 @@
 import styled from "styled-components";
-
+import { useCartContext } from "./Context/CartContext";
+import CartItems from "./Components/CartItems";
 const Cart = () => {
-  return <Wrapper></Wrapper>;
+  const {cart,total_items,total_amount,shipping_fees} = useCartContext();
+  return <Wrapper>
+    <div className="container">
+    <div className="grid grid-five-column">
+        <p className="cart-heading">Items</p>
+        <p className="cart-hide cart-heading">Price</p>
+        <p className="cart-heading">quantity</p>
+        <p className="cart-hide cart-heading">Subtotal</p>
+        <p className="cart-heading">Remove</p> 
+    </div>
+    <hr/>
+    <div className="cart-item">
+      <CartItems cart={cart}></CartItems>
+    </div>
+    <hr/>
+    </div>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`
@@ -108,7 +125,7 @@ const Wrapper = styled.section`
     }
   }
 
-  .remove_icon {
+  .remove-icon {
     font-size: 1.6rem;
     color: #e74c3c;
     cursor: pointer;

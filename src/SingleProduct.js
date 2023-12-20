@@ -12,6 +12,9 @@ import Stars from "./Components/Stars";
 import ProductColors from "./Components/ProductColors";
 import SelectQuantity from "./Components/SelectQuantity";
 import {Button} from "./styles/Button";
+import AddToCart from "./Components/AddToCart";
+
+
 
 const API = "https://fakestoreapi.com/products";
 const SingleProduct=()=>{
@@ -20,7 +23,7 @@ const SingleProduct=()=>{
   const {getSingleProduct,isSingleLoading,singleProduct} = useProductContext();
   console.log(getSingleProduct);
   //destrunctiong singleProdunct
-  console.log("my single product : "+singleProduct);
+  console.log("my single product : ",singleProduct);
   const {
     id:alias,
     title,
@@ -34,6 +37,8 @@ const SingleProduct=()=>{
     }={rate:0,count:0},
   } = singleProduct;
   //api don't provide stock
+    const colors =["rgb(235, 100, 52)","#211815","#f073e7"];
+  const [curColor,selectColor] = useState(colors[0]);
   let stock = 10;
   const [amount,setAmount]=useState(1);
   //  console.log(rate);
@@ -103,11 +108,9 @@ const SingleProduct=()=>{
              
           </div>
           <hr></hr>
-            <ProductColors/>
+            <ProductColors colors={colors}curColor={curColor} selectColor={selectColor}/>
             <SelectQuantity amount={amount} setIncrease={setIncrease} setDecrease={setDecrease}/>
-            <NavLink to="/cart">
-              <Button>ADD TO CART</Button>
-            </NavLink>
+            <AddToCart product={{...singleProduct,color:curColor,amount}} ></AddToCart>
         </div>
       </div>
     </div>

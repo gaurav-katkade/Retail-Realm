@@ -15,6 +15,8 @@ const SelectQuantity=({amount,setIncrease,setDecrease})=>{
 
 const Wrapper = styled.div`
     display:flex;
+    align-items:center;
+    justify-content:center;
     gap:1rem;
     .btn{
         font-size:2rem;

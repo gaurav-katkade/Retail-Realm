@@ -1,7 +1,7 @@
 
 const FormatPrice =(props)=>{
     
-    return(Intl.NumberFormat('en-IN', { style:"currency",currency:"INR",maximumSignificantDigits: 2 }).format(
+    return(Intl.NumberFormat('en-IN', { style:"currency",currency:"INR",maximumFractionDigits:"2" }).format(
         props.price
       ));
 }

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
-const ProductColors = ()=>{
+const ProductColors = ({colors,curColor,selectColor})=>{
     //my api dont't have colors value I am giving it myself
-    const colors =["rgb(235, 100, 52)","#211815","#f073e7"];
-    const [curColor,selectColor] = useState(colors[0]);
+    // const colors =["rgb(235, 100, 52)","#211815","#f073e7"];
+    // const [curColor,selectColor] = useState(colors[0]);
     return<Wrapper>
         {
             colors.map((ele,index)=>{
