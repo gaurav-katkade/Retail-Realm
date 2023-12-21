@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useCartContext } from "./Context/CartContext";
 import CartItems from "./Components/CartItems";
+import { Button } from "./styles/Button";
 const Cart = () => {
   const {cart,total_items,total_amount,shipping_fees} = useCartContext();
   return <Wrapper>
@@ -17,6 +18,10 @@ const Cart = () => {
       <CartItems cart={cart}></CartItems>
     </div>
     <hr/>
+    </div>
+    <div className="cart-two-button">
+      <Button>Continue Shopping</Button>
+      <Button className="clear-btn">Clear Cart</Button>
     </div>
   </Wrapper>;
 };

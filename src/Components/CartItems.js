@@ -17,14 +17,27 @@ const CartItems = ({cart})=>{
           cart.map(
             (curEle)=>{
                 return<div className="grid grid-five-column">
-                  <div className="item-column">
-                      <p>{curEle.title}</p>
+                  <div className="cart-image--name">
+                      <img src={curEle.image} alt={curEle.title}/>
+                      <div> 
+                        <p>{curEle.title}</p>
+                        <div className="color-div">
+                          <p>COLOR : </p>
+                          <div className="color-style" style={{backgroundColor:curEle.color}}></div>
+                        </div>
+                      </div>
+                     
                   </div>
                   <div className="cart-hide price-column">
                       <p>{curEle.price}</p>
                   </div>
                   <div className="quantity-column">
-                      <SelectQuantity amount={curEle.amount} setDecrease={setDecrease} setIncrease={setIncrease}></SelectQuantity>
+                      <SelectQuantity 
+                      amount={curEle.amount} 
+
+                      setDecrease={setDecrease} 
+                      setIncrease={setIncrease}>
+                      </SelectQuantity>
                   </div>
                   <div className="cart-hide subtotal-column">
                       <p>{curEle.price*curEle.amount}</p>
