@@ -1,0 +1,7 @@
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115314.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115335.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115351.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115404.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115420.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115441.png)
+![alt text](https://github.com/gaurav-katkade/Retail-Realm/blob/main/Screenshots/Screenshot%202024-01-11%20115506.png)
