@@ -18,10 +18,12 @@ const Cart = () => {
       <CartItems cart={cart}></CartItems>
     </div>
     <hr/>
-    </div>
     <div className="cart-two-button">
       <Button>Continue Shopping</Button>
-      <Button className="clear-btn">Clear Cart</Button>
+      <div className="clear-btn">
+        <Button className="btn-clear">Clear Cart</Button>
+      </div>
+    </div>
     </div>
   </Wrapper>;
 };

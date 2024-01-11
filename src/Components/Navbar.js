@@ -46,7 +46,7 @@ const Nav = styled.nav`
         font-weight: 500;
         text-transform: uppercase;
         color: ${({ theme }) => theme.colors.black};
-        transition: color 0.3s linear;
+        // transition: color 0.3s linear;
       }
       &:hover,
       &:active {
@@ -140,15 +140,15 @@ const Nav = styled.nav`
       visibility: hidden;
       opacity: 0;
       transform: translateX(100%);
-      transition: all 3s linear;
+      // transition: all 3s linear;
     }
     .active .navbar-lists {
       visibility: visible;
-      opacity: 1;
+      opacity: 0.85;
       transform: translateX(0);
       z-index: 999;
       transform-origin: right;
-      transition: all 3s linear;
+      // transition: all 3s linear;
 
       .navbar-link {
         font-size: 4.2rem;
